@@ -1,0 +1,76 @@
+INFO - 12:22 - Application starting up...
+INFO - 12:22 - Main menu options displayed...
+INFO - 12:23 - ...Exiting system...
+INFO - 14:06 - Application starting up...
+INFO - 14:06 - Main menu options displayed...
+INFO - 14:10 - Application starting up...
+INFO - 14:10 - Main menu options displayed...
+INFO - 14:11 - ...Exiting system...
+INFO - 14:11 - Application starting up...
+INFO - 14:11 - Main menu options displayed...
+INFO - 14:11 - ...Exiting system...
+INFO - 14:11 - Application starting up...
+INFO - 14:11 - Main menu options displayed...
+ERROR - 14:51 - Error adding product 
+
+	dagger --- $0.0
+		Category: weaponry
+		Location: Captain Branch to database: 
+org.postgresql.util.PSQLException: ERROR: syntax error at or near "Branch"
+  Position: 96
+ERROR - 14:53 - Error adding product 
+
+	dagger --- $0.0
+		Category: weaponry
+		Location: Captain Branch
+ to database: 
+org.postgresql.util.PSQLException: ERROR: column "weaponry" does not exist
+  Position: 109
+ERROR - 14:54 - Error adding product 
+
+	dagger --- $0.0
+		Category: weaponry
+		Location: Captain Branch
+ to database: 
+org.postgresql.util.PSQLException: ERROR: INSERT has more target columns than expressions
+  Position: 66
+ERROR - 14:55 - Error adding product 
+
+	dagger --- $0.0
+		Category: weaponry
+		Location: Captain Branch
+ to database: 
+org.postgresql.util.PSQLException: Unterminated string literal started at position 125 in SQL INSERT INTO products (product_id, product_name, store_id, price, category) VALUES ( 0, 'dagger',Captain Branch',0.0,'weaponry'). Expected  char
+ERROR - 14:56 - Error adding product 
+
+	dagger --- $10.0
+		Category: weaponry
+		Location: Captain Branch
+ to database: 
+org.postgresql.util.PSQLException: Unterminated string literal started at position 126 in SQL INSERT INTO products (product_id, product_name, store_id, price, category) VALUES ( 0, 'dagger',Captain Branch',10.0,'weaponry'). Expected  char
+ERROR - 14:57 - Error adding product to database
+ERROR - 14:58 - Error deleting product 
+
+	dagger --- $10.0
+		Category: weaponry
+		Location: Captain Branch from database
+ERROR - 14:59 - Error deleting product 
+
+	dagger --- $10.0
+		Category: weaponry
+		Location: Captain Branch fromt database: 
+org.postgresql.util.PSQLException: No results were returned by the query.
+ERROR - 14:59 - Error deleting product 
+
+	dagger --- $10.0
+		Category: weaponry
+		Location: Captain Branch fromt database: 
+org.postgresql.util.PSQLException: No results were returned by the query.
+ERROR - 15:00 - Error adding product to database
+ERROR - 15:00 - Error updating product 
+
+	Dagger --- $10.0
+		Category: weaponry
+		Location: Captain Branch in database
+INFO - 21:44 - Application starting up...
+INFO - 21:44 - Main menu options displayed...
