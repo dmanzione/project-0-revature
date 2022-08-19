@@ -9,7 +9,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 		logger.log(LogLevel.INFO, "Application starting up...");
-		
+
 		Menu.open();
 
 	}

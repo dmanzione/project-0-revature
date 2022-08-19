@@ -6,16 +6,15 @@ public class Product {
 	private String description;
 	private int productId;
 	private String store;
-	
+
 	public Product() {
-	
+
 		name = "Default Name";
 		price = 10.00;
 		description = "Default product ";
-		
+
 	}
-	
-	
+
 	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;

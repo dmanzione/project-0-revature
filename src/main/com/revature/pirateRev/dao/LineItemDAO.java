@@ -114,9 +114,9 @@ public class LineItemDAO implements DAO<LineItem> {
 		}
 		return lineItems;
 	}
-	
-	public ArrayList<LineItem> readAllByOrderID(int orderID){
-		
+
+	public ArrayList<LineItem> readAllByOrderID(int orderID) {
+
 		String query = "SELECT * FROM line_item WHERE order_id = " + orderID + ";";
 		ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {

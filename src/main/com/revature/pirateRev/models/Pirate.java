@@ -50,7 +50,7 @@ public class Pirate {
 
 	public void setId(int pirateID) {
 		this.pirateID = pirateID;
-		
+
 	}
 
 	public int getId() {

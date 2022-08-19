@@ -31,13 +31,11 @@ public class StoreFrontDAO implements DAO<StoreFront> {
 
 	@Override
 	public void update(StoreFront obj) {
-		
 
 	}
 
 	@Override
 	public void delete(StoreFront store) {
-		
 
 	}
 
@@ -56,7 +54,7 @@ public class StoreFrontDAO implements DAO<StoreFront> {
 				stores.add(store);
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return stores;

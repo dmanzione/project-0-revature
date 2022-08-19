@@ -11,6 +11,11 @@ public class Order {
 	private double totalPrice;
 	private int pirateID;
 
+	@Override
+	public String toString() {
+		return "\t*********\n\nOrder: \n\n" + lineItems + "\n\n\t*********";
+	}
+
 	public int getPirateID() {
 		return pirateID;
 	}
@@ -45,11 +50,11 @@ public class Order {
 
 	public void setPirateID(int pirateID) {
 		this.pirateID = pirateID;
-		
+
 	}
 
 	public String getStoreID() {
-		
+
 		return this.storeID;
 	}
 

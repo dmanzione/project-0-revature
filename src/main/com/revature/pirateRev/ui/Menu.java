@@ -49,7 +49,9 @@ public class Menu {
 		sc.close();
 	}
 
-	static void exit() {
+	public static void exit() {
+		System.out.println("Thank you for choosing the Pirate Supply Store\n\nas"
+				+ " your choice of looted products for the modern scoundrel!!\n\n");
 		System.out.println("\n\n\tReveal our location and you're dead...");
 
 		logger.log(LogLevel.INFO, "...Exiting system...");
@@ -80,7 +82,7 @@ public class Menu {
 			return;
 		}
 
-		System.out.println("\nWhich pirate are you then?\n");
+		System.out.println("\nWhich pirate are you?\n");
 
 		pirates.print();
 
@@ -91,6 +93,7 @@ public class Menu {
 		try {
 			pirate = pirateDAO.readByName(pirateInput);
 		} catch (NoSuchElementException e) {
+			logger.log(LogLevel.ERROR, "User input incorrect for pirate name");
 			System.out.println("There is no such pirate\n\nTry again");
 
 			return;
@@ -98,7 +101,5 @@ public class Menu {
 
 		PirateHome.start(pirate);
 	}
-
-	
 
 }

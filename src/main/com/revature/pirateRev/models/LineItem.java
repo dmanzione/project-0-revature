@@ -1,11 +1,16 @@
 package com.revature.pirateRev.models;
 
 public class LineItem {
+	@Override
+	public String toString() {
+		return "\n\n\t"+product + "\tQuantity=" + quantity + "\n";
+	}
+
 	private int id;
 	private Product product;
 	private int orderID;
 	private int quantity;
-	
+
 	public Product getProduct() {
 		return product;
 	}

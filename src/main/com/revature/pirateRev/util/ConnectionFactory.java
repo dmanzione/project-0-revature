@@ -25,7 +25,8 @@ public class ConnectionFactory {
 		Connection conn = null;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:postgresql://pirate-supply-store.cbvhz1czalox.us-east-1.rds.amazonaws.com:5432/postgres",
+			conn = DriverManager.getConnection(
+					"jdbc:postgresql://pirate-supply-store.cbvhz1czalox.us-east-1.rds.amazonaws.com:5432/postgres",
 					"dmanzione", "12345678");
 
 		} catch (SQLException e) {

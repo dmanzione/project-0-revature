@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class NauticalChart {
 
-	public static Map<String, String> map = new HashMap<String,String>() {
+	public static Map<String, String> map = new HashMap<String, String>() {
 		/**
 		 * 
 		 */
@@ -27,7 +27,7 @@ public class NauticalChart {
 	};
 
 	public static String get(String name) {
-		
+
 		return map.get(name);
 	}
 

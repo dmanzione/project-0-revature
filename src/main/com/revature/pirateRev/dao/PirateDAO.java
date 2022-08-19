@@ -9,12 +9,14 @@ import java.sql.Statement;
 import com.revature.pirateRev.collections.ArrayList;
 import com.revature.pirateRev.exceptions.NoSuchElementException;
 import com.revature.pirateRev.models.Pirate;
+import com.revature.pirateRev.ui.Menu;
 import com.revature.pirateRev.util.CaptainsLogger;
 import com.revature.pirateRev.util.CaptainsLogger.LogLevel;
 import com.revature.pirateRev.util.ConnectionFactory;
 
 public class PirateDAO implements DAO<Pirate> {
 	private static CaptainsLogger logger = CaptainsLogger.getLogger();
+	private PirateDAO pirateDAO;
 
 	@Override
 	public void create(Pirate pirate) {
@@ -75,7 +77,9 @@ public class PirateDAO implements DAO<Pirate> {
 
 	@Override
 	public void delete(Pirate pirate) {
-		// TODO Auto-generated method stub
+		pirateDAO.delete(pirate);
+		System.out.println("\n\nWe are sad to see you go!\n\n");
+		Menu.exit();
 
 	}
 

@@ -6,10 +6,13 @@ import com.revature.pirateRev.collections.ArrayList;
 import com.revature.pirateRev.dao.OrderDAO;
 import com.revature.pirateRev.dao.ProductDAO;
 import com.revature.pirateRev.dao.StoreFrontDAO;
+import com.revature.pirateRev.models.LineItem;
 import com.revature.pirateRev.models.Order;
 import com.revature.pirateRev.models.Pirate;
 import com.revature.pirateRev.models.Product;
 import com.revature.pirateRev.models.StoreFront;
+import com.revature.pirateRev.util.CaptainsLogger;
+import com.revature.pirateRev.util.CaptainsLogger.LogLevel;
 
 public class PirateHome {
 
@@ -19,7 +22,9 @@ public class PirateHome {
 	private static ProductDAO productDAO = new ProductDAO();
 	private static Pirate pirate;
 	private static OrderDAO orderDAO = new OrderDAO();
-
+	private static CaptainsLogger logger;
+	private static Order order;
+	private static LineItem lineItem;
 	public static void start(Pirate p) {
 		pirate = p;
 		System.out.println("\nWelcome, " + pirate.getName() + "\n\n");
@@ -76,7 +81,8 @@ public class PirateHome {
 	}
 
 	private static void lootVillage() {
-		// TODO Auto-generated method stub
+		System.out.println("\n\nOld habits die hard...\n\nAnd so do pirates!\n\nNow get out of here!");
+		Menu.exit();
 
 	}
 
@@ -115,11 +121,11 @@ public class PirateHome {
 	}
 
 	private static void changeAddress() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	private static void changeName() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -228,17 +234,69 @@ public class PirateHome {
 
 		products.print();
 
-		System.out.println("\n\nWould you like to purchase an item?");
-		System.out.println("\n\n(1) Yes");
-		System.out.println("\n\n(2) No");
-		System.out.println("(o) Log out");
-		System.out.println("(x) Exit");
-		pirateInput = sc.nextLine();
-		switch (pirateInput) {
-		case "1":
-			System.out.println("Which one?\n\nSelect by number:\n\n");
-			String choice = sc.nextLine();
-			switch (choice) {
+		while (true) {
+			System.out.println("\n\nWould you like to purchase an item?");
+			System.out.println("\n\n(1) Yes");
+			System.out.println("(2) No");
+			System.out.println("(x) Exit");
+			pirateInput = sc.nextLine();
+			switch (pirateInput) {
+			case "1":
+				System.out.println("Which one?\n\nSelect by number:\n\n");
+				products.print();
+				String choice = sc.nextLine();
+
+				Integer choiceNum = Integer.valueOf(choice);
+				if (products.getElementAtIndex(choiceNum) == null) {
+					System.out.println("\n\nWrong input! Please try again");
+					logger.log(LogLevel.ERROR, "\n\nWrong input! Please try again");
+					continue;
+				}else {
+					Product myProduct = products.getElementAtIndex(Integer.valueOf(choice));
+					System.out.println("\n\nThis is the item you chose:");
+					
+					System.out.println("\n\n"+myProduct);
+					
+					System.out.println("\n\nHow many would you like?");
+					
+					String numOfProducts = sc.nextLine();
+					int numOfItemsCustomer = Integer.valueOf(numOfProducts);
+					
+					int numOfItemsInStock = 0;
+					for(Product product : products) {
+						if(product.getName().equals(myProduct.getName())) {
+							numOfItemsInStock++;
+						}
+					}
+					if(numOfItemsInStock<numOfItemsCustomer) {
+						System.out.println("\n\nI am sorry, but we only have " + numOfItemsInStock + " left.");
+						System.out.println("\n\nLet me go ahead and add it to your order...");
+						
+						LineItem lineI = new LineItem();
+						lineI.setProduct(myProduct);
+						lineI.setQuantity(numOfItemsCustomer);
+						
+						System.out.println("\n\nThis is your order so far:\n\n"+ order);
+						
+					}
+					
+					
+					Menu.exit();
+				}
+				break;
+			case "2":
+				
+				System.out.println("\n\nMaybe you would like an item from another store...");
+				return;
+			case "x":
+				Menu.exit();
+				break;
+				
+			default:
+				
+				System.out.println("\n\nWrong input!\n\nPlease try again");
+				break; 
+				
 			}
 		}
 	}

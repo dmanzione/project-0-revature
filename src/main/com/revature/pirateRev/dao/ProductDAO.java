@@ -21,12 +21,12 @@ public class ProductDAO implements DAO<Product> {
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String query = "INSERT INTO products (product_id, product_name, store_id, price, category) VALUES ( "
-					+ product.getProductId() + ", '"+product.getName()+"','" + product.getStore() + "'," + product.getPrice() + ",'"
-					+ product.getCategory() + "')";
+					+ product.getProductId() + ", '" + product.getName() + "','" + product.getStore() + "',"
+					+ product.getPrice() + ",'" + product.getCategory() + "')";
 			Statement stmt = conn.createStatement();
-			
-				logger.log(LogLevel.INFO, "Product: " + product + " added to database successfully");
-			
+
+			logger.log(LogLevel.INFO, "Product: " + product + " added to database successfully");
+
 		} catch (SQLException e) {
 			logger.log(LogLevel.ERROR, "Error adding product " + product + "\n to database: \n" + e);
 			System.out.println("Error adding product " + product + "\n to database: \n");
@@ -106,15 +106,13 @@ public class ProductDAO implements DAO<Product> {
 		return products;
 	}
 
-
-
 	public Product readById(int id) {
-		String query = "SELECT * FROM products where product_id = "+id + ";";
+		String query = "SELECT * FROM products where product_id = " + id + ";";
 		Product product = null;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			
+
 			while (rs.next()) {
 				product = new Product();
 				product.setProductId(rs.getInt("product_id"));
@@ -122,7 +120,7 @@ public class ProductDAO implements DAO<Product> {
 				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStore(rs.getString("store_id"));
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -130,10 +128,11 @@ public class ProductDAO implements DAO<Product> {
 			System.out.println(e);
 		}
 		return product;
-		
+
 	}
+
 	public ArrayList<Product> readAllByStoreName(String name) {
-		String query = "SELECT * FROM products WHERE store_id = '"+name+"';";
+		String query = "SELECT * FROM products WHERE store_id = '" + name + "';";
 		ArrayList<Product> products = new ArrayList<Product>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			Statement stmt = conn.createStatement();
