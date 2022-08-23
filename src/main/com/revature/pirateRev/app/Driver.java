@@ -1,8 +1,8 @@
 package com.revature.pirateRev.app;
 
 import com.revature.pirateRev.ui.Menu;
-import com.revature.pirateRev.util.CaptainsLogger;
-import com.revature.pirateRev.util.CaptainsLogger.LogLevel;
+import com.revature.pirateRev.utils.CaptainsLogger;
+import com.revature.pirateRev.utils.CaptainsLogger.LogLevel;
 
 public class Driver {
 	private static CaptainsLogger logger = CaptainsLogger.getLogger();

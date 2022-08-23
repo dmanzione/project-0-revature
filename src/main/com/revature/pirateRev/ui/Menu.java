@@ -2,12 +2,12 @@ package com.revature.pirateRev.ui;
 
 import java.util.Scanner;
 
-import com.revature.pirateRev.collections.ArrayList;
-import com.revature.pirateRev.dao.PirateDAO;
-import com.revature.pirateRev.exceptions.NoSuchElementException;
+import com.revature.pirateRev.data.PirateDAO;
 import com.revature.pirateRev.models.Pirate;
-import com.revature.pirateRev.util.CaptainsLogger;
-import com.revature.pirateRev.util.CaptainsLogger.LogLevel;
+import com.revature.pirateRev.utils.ArrayList;
+import com.revature.pirateRev.utils.CaptainsLogger;
+import com.revature.pirateRev.utils.NoSuchElementException;
+import com.revature.pirateRev.utils.CaptainsLogger.LogLevel;
 
 public class Menu {
 	private static PirateDAO pirateDAO = new PirateDAO();

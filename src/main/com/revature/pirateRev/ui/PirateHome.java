@@ -2,17 +2,17 @@ package com.revature.pirateRev.ui;
 
 import java.util.Scanner;
 
-import com.revature.pirateRev.collections.ArrayList;
-import com.revature.pirateRev.dao.OrderDAO;
-import com.revature.pirateRev.dao.ProductDAO;
-import com.revature.pirateRev.dao.StoreFrontDAO;
+import com.revature.pirateRev.data.OrderDAO;
+import com.revature.pirateRev.data.ProductDAO;
+import com.revature.pirateRev.data.StoreFrontDAO;
 import com.revature.pirateRev.models.LineItem;
 import com.revature.pirateRev.models.Order;
 import com.revature.pirateRev.models.Pirate;
 import com.revature.pirateRev.models.Product;
 import com.revature.pirateRev.models.StoreFront;
-import com.revature.pirateRev.util.CaptainsLogger;
-import com.revature.pirateRev.util.CaptainsLogger.LogLevel;
+import com.revature.pirateRev.utils.ArrayList;
+import com.revature.pirateRev.utils.CaptainsLogger;
+import com.revature.pirateRev.utils.CaptainsLogger.LogLevel;
 
 public class PirateHome {
 

@@ -1,6 +1,6 @@
 package com.revature.pirateRev.models;
 
-import com.revature.pirateRev.collections.ArrayList;
+import com.revature.pirateRev.utils.ArrayList;
 
 public class Order {
 

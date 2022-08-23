@@ -1,7 +1,7 @@
 package com.revature.pirateRev.models;
 
-import com.revature.pirateRev.booty.NauticalChart;
-import com.revature.pirateRev.collections.ArrayList;
+import com.revature.pirateRev.data.NauticalChart;
+import com.revature.pirateRev.utils.ArrayList;
 
 public class StoreFront {
 	private String name;

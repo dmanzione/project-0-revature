@@ -37,6 +37,7 @@ public class Product {
 	}
 
 	private String category;
+	private int quantityInStock;
 
 //	{
 //		trinkets, clothingAndAccessories, magicTokensAndPotions, navigation, weaponry, howToGuides, miscellaneous
@@ -78,6 +79,16 @@ public class Product {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+
+	public void setQuantityInStock(int quantityInStock) {
+		this.quantityInStock = quantityInStock;
+		
+	}
+
+	public int getQuantityInStock() {
+		
+		return this.quantityInStock;
 	}
 
 }
