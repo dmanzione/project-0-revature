@@ -11,7 +11,7 @@ import com.revature.pirateRev.util.CaptainsLogger.LogLevel;
 
 public class ConnectionFactory {
 	private static CaptainsLogger logger = CaptainsLogger.getLogger();
-	
+
 	private static ConnectionFactory connectionFactory;
 
 	static {
@@ -22,22 +22,19 @@ public class ConnectionFactory {
 			System.out.println(e);
 		}
 
-	
-
 	}
 
 	public Connection getConnection() {
 
 		Connection conn = null;
+		String url, username, password;
 		Properties properties = new Properties();
 		try {
-			properties.setProperty("username", "dmanzione");
-			properties.setProperty("password", "12345678");
-			properties.setProperty("url",
-					"jdbc:postgresql://pirate-supply-store.cbvhz1czalox.us-east-1.rds.amazonaws.com:5432/postgres");
-			properties.load(new FileReader("/Users/donato/Documents/workspace-spring-tool-suite-4-4.15.1.RELEASE/PirateSupply/resources/database.properties"));
+
+			properties.load(new FileReader(
+					"/Users/donato/Documents/workspace-spring-tool-suite-4-4.15.1.RELEASE/PirateSupply/resources/database.properties"));
 		} catch (IOException e1) {
-			
+
 			e1.printStackTrace();
 		}
 
