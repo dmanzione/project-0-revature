@@ -1,12 +1,13 @@
 package com.revature.pirateRev.util;
 
 import com.revature.pirateRev.exceptions.AssertException;
+import com.revature.pirateRev.models.Pirate;
 
 public class Assertions<T> {
 
-	public static void equals(double a, double b) {
+	public static void equals(String string, String string2) {
 
-		if (a != b)
+		if (!string.equals(string2))
 			throw new AssertException("Test failed!");
 
 	}
@@ -39,6 +40,13 @@ public class Assertions<T> {
 
 		}
 
+	}
+
+	public static void isNull(Object obj) {
+		if(obj!=null) {
+			throw new AssertException("Test failed!");
+		}
+		
 	}
 
 }

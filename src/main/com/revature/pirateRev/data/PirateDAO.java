@@ -62,14 +62,36 @@ public class PirateDAO implements DAO<Pirate> {
 	}
 
 	@Override
-	public void update(Pirate obj) {
+	public void update(Pirate pirate) {
+		String query = "UPDATE pirates SET pirate_password = ?, pirate_name = ?, email = ?, address = ?,pirate_username = ? WHERE pirate_id = ?";
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pirate.getPassword());
+			pstmt.setString(2, pirate.getName());
+			pstmt.setString(3, pirate.getEmail());
+			pstmt.setString(4, pirate.getAddress());
+			pstmt.setString(5, pirate.getUsername());
+			pstmt.setInt(6, pirate.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
 
+			logger.log(LogLevel.ERROR, "Error updating pirate " + pirate + " in database: \n" + e);
+			System.out.println("Product " + pirate + " could not be updated! " + e);
+
+		}
 	}
 
 	@Override
 	public void delete(Pirate pirate) {
+		String query = "DELETE FROM pirates WHERE pirate_id = " +pirate.getId();
 		
-	
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			Statement stmt = conn.createStatement();
+			stmt.execute(query);
+			
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
 
 	}
 
@@ -94,13 +116,13 @@ public class PirateDAO implements DAO<Pirate> {
 			
 
 		} catch (SQLException e) {
-//			String stackTrace= "";
-//			for(StackTraceElement s : e.getStackTrace()) {
-//				stackTrace+="\t"+s.toString()+"\n";
-//			}
-//			logger.log(LogLevel.ERROR, e.getClass().getName() + " thrown when trying to retrieve"
-//					+ " record from 'pirates' table.\n\tStack Trace: " + stackTrace);
-//			print("Unable to retrieve pirate record from database."+e.getClass().getName()+ " thrown.");
+			String stackTrace= "";
+			for(StackTraceElement s : e.getStackTrace()) {
+				stackTrace+="\t"+s.toString()+"\n";
+			}
+			logger.log(LogLevel.ERROR, e.getClass().getName() + " thrown when trying to retrieve"
+					+ " record from 'pirates' table.\n\tStack Trace: " + stackTrace);
+			print("Unable to retrieve pirate record from database."+e.getClass().getName()+ " thrown.");
 			e.printStackTrace();
 		}
 		
