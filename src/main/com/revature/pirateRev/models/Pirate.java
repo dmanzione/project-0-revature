@@ -8,6 +8,8 @@ public class Pirate {
 	private String email;
 	private ArrayList<Order> orders;
 	private int pirateID;
+	private String username;
+	private String password;
 
 	public String getName() {
 		return name;
@@ -15,7 +17,7 @@ public class Pirate {
 
 	@Override
 	public String toString() {
-		return "Pirate - \n\t" + name + "\n\t" + address + "\n\t" + email;
+		return "Pirate - \n\t" + name + "\n\t" + address + "\n\t" + email + "\n\tusername: "+username;
 	}
 
 	public void setName(String name) {
@@ -55,5 +57,24 @@ public class Pirate {
 
 	public int getId() {
 		return this.pirateID;
+	}
+
+	public void setUsername(String username) {
+		this.username = username.trim().toLowerCase();
+		
+	}
+
+	public void setPassword(String password) {
+		this.password = password.trim();
+		
+	}
+
+	public String getUsername() {
+		
+		return this.username;
+	}
+	
+	public String getPassword() {
+		return this.password;
 	}
 }

@@ -16,35 +16,26 @@ import com.revature.pirateRev.util.ConnectionFactory;
 
 public class PirateDAO implements DAO<Pirate> {
 	private static CaptainsLogger logger = CaptainsLogger.getLogger();
-	private PirateDAO pirateDAO;
+	
 
 	@Override
 	public void create(Pirate pirate) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
 			PreparedStatement ps = conn
-					.prepareStatement("insert into pirates (pirate_name, address, email) values (?, ?, ?)");
+					.prepareStatement("insert into pirates (pirate_name, address, email, pirate_username, pirate_password)"
+							+ " values (?, ?, ?, ?, ?)");
 			ps.setString(1, pirate.getName());
 			ps.setString(2, pirate.getAddress());
 			ps.setString(3, pirate.getEmail());
+			ps.setString(4, pirate.getUsername());
+			ps.setString(5, pirate.getPassword());
 			ps.execute();
 		} catch (SQLException e) {
 			logger.log(LogLevel.ERROR,
 					"You not create connection to database. New pirate could not be added.\n\n\tException: "
 							+ e.getMessage() + "\n\n\tStack Trace:\n\n" + e.getStackTrace().toString());
 		}
-	}
-
-	@Override
-	public Pirate readByName(String name) throws NoSuchElementException {
-		for (Object p : readAll()) {
-			Pirate pir = (Pirate) p;
-			if (pir.getName().equals(name)) {
-				return pir;
-			}
-
-		}
-		throw new NoSuchElementException("There is no pirate called " + name);
 	}
 
 	@Override
@@ -77,10 +68,50 @@ public class PirateDAO implements DAO<Pirate> {
 
 	@Override
 	public void delete(Pirate pirate) {
-		pirateDAO.delete(pirate);
-		System.out.println("\n\nWe are sad to see you go!\n\n");
-		Menu.exit();
+		
+	
 
+	}
+
+	@Override
+	public Pirate readBySomeColumnValue(String username) {
+		String query = "SELECT * FROM pirates WHERE pirate_username = '" + username + "'";
+		Pirate retrievedPirate = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				retrievedPirate = new Pirate();
+				retrievedPirate.setName(rs.getString("pirate_name"));
+				retrievedPirate.setAddress(rs.getString("address"));
+				retrievedPirate.setId(rs.getInt("pirate_id"));
+				retrievedPirate.setPassword(rs.getString("pirate_password"));
+				retrievedPirate.setUsername(rs.getString("pirate_username"));
+				retrievedPirate.setEmail(rs.getString("email"));
+			}
+			
+			
+
+		} catch (SQLException e) {
+//			String stackTrace= "";
+//			for(StackTraceElement s : e.getStackTrace()) {
+//				stackTrace+="\t"+s.toString()+"\n";
+//			}
+//			logger.log(LogLevel.ERROR, e.getClass().getName() + " thrown when trying to retrieve"
+//					+ " record from 'pirates' table.\n\tStack Trace: " + stackTrace);
+//			print("Unable to retrieve pirate record from database."+e.getClass().getName()+ " thrown.");
+			e.printStackTrace();
+		}
+		
+		
+		return retrievedPirate;
+
+	}
+
+	private void print(String string) {
+		System.out.println("\n\n" + string);
+		
 	}
 
 }

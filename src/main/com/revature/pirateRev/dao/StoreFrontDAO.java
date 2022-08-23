@@ -18,7 +18,7 @@ public class StoreFrontDAO implements DAO<StoreFront> {
 	}
 
 	@Override
-	public StoreFront readByName(String name) {
+	public StoreFront readBySomeColumnValue(String name) {
 		for (Object storeObj : readAll()) {
 			System.out.println(storeObj);
 			StoreFront store = (StoreFront) storeObj;

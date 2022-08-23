@@ -23,21 +23,23 @@ public class PirateHome {
 	private static Pirate pirate;
 	private static OrderDAO orderDAO = new OrderDAO();
 	private static CaptainsLogger logger;
-	private static Order order;
+	private static Order order = new Order();
 	private static LineItem lineItem;
+	private static ArrayList<Order> orders;
+
 	public static void start(Pirate p) {
 		pirate = p;
-		System.out.println("\nWelcome, " + pirate.getName() + "\n\n");
-
+		print("\nWelcome, " + pirate.getName() + "\n\n");
+		pirate.setOrders(orders = orderDAO.readAllByPirateUsername(pirate.getUsername()));
 		do {
 
-			System.out.println("What would you like to do?\n");
-			System.out.println("(1) Choose Store");
-			System.out.println("(2) Edit Profile");
-			System.out.println("(3) Loot Village");
-			System.out.println("(4) See past orders");
-			System.out.println("(o) Log out");
-			System.out.println("(x) Exit\n");
+			print("What would you like to do?\n");
+			print("(1) Choose Store");
+			print("(2) Edit Profile");
+			print("(3) Loot Village");
+			print("(4) See past orders");
+			print("(o) Log out");
+			print("(x) Exit\n");
 
 			pirateInput = sc.nextLine();
 			switch (pirateInput.trim().toLowerCase()) {
@@ -61,13 +63,13 @@ public class PirateHome {
 				showPastOrders();
 				break;
 			case "o":
-				System.out.println("\n\nLogging out...");
+				print("\n\nLogging out...");
 				return;
 			case "x":
 				Menu.exit();
 				break;
 			default:
-				System.out.println("\n\nWrong Input!");
+				print("\n\nWrong Input!");
 				break;
 			}
 
@@ -75,26 +77,30 @@ public class PirateHome {
 	}
 
 	private static void showPastOrders() {
-		ArrayList<Order> myOrders = orderDAO.readAllByPirateName(pirate.getName());
-		myOrders.print();
+
+		if (orders.isEmpty()) {
+			print("You have no past orders!");
+		} else {
+			orders.print();
+		}
 
 	}
 
 	private static void lootVillage() {
-		System.out.println("\n\nOld habits die hard...\n\nAnd so do pirates!\n\nNow get out of here!");
+		print("\n\nOld habits die hard...\n\nAnd so do pirates!\n\nNow get out of here!");
 		Menu.exit();
 
 	}
 
 	private static void editProfile() {
-		System.out.println("\n\nHere is your information:\n\n" + pirate);
+		print("\n\nHere is your information:\n\n" + pirate);
 		do {
 
-			System.out.println("What would you like to do?\n");
-			System.out.println("(1) Change name");
-			System.out.println("(2) Change address");
-			System.out.println("(3) Change email");
-			System.out.println("(3) Loot Village");
+			print("What would you like to do?\n");
+			print("(1) Change name");
+			print("(2) Change address");
+			print("(3) Change email");
+			print("(3) Loot Village");
 
 			pirateInput = sc.nextLine();
 			switch (pirateInput.trim().toLowerCase()) {
@@ -107,13 +113,13 @@ public class PirateHome {
 				changeAddress();
 				break;
 			case "o":
-				System.out.println("\n\nLogging out...");
+				print("\n\nLogging out...");
 				return;
 			case "x":
 				Menu.exit();
 				break;
 			default:
-				System.out.println("\n\nWrong Input!");
+				print("\n\nWrong Input!");
 				break;
 
 			}
@@ -121,21 +127,20 @@ public class PirateHome {
 	}
 
 	private static void changeAddress() {
-		
+
 	}
 
 	private static void changeName() {
-		
 
 	}
 
 	private static void pickStore() {
-		System.out.println("\nPlease select one of our stores: ");
+		print("\nPlease select one of our stores: ");
 		ArrayList<StoreFront> stores = storeFrontDAO.readAll();
 		stores.print();
-		System.out.println("\n\nPlease choose which store you want to check out");
+		print("\n\nPlease choose which store you want to check out");
 
-		System.out.println("\n\nType in the number:");
+		print("\n\nType in the number:");
 
 		pirateInput = sc.nextLine();
 
@@ -144,7 +149,7 @@ public class PirateHome {
 		switch (pirateInput.trim().toLowerCase()) {
 		case "1":
 		case "one":
-			store = storeFrontDAO.readByName("Captain Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Captain Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -153,7 +158,7 @@ public class PirateHome {
 			break;
 		case "2":
 		case "two":
-			store = storeFrontDAO.readByName("First Mate Branch");
+			store = storeFrontDAO.readBySomeColumnValue("First Mate Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -161,7 +166,7 @@ public class PirateHome {
 			break;
 		case "3":
 
-			store = storeFrontDAO.readByName("Quartermaster Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Quartermaster Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -170,7 +175,7 @@ public class PirateHome {
 			break;
 		case "4":
 
-			store = storeFrontDAO.readByName("Sailing Master Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Sailing Master Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -178,7 +183,7 @@ public class PirateHome {
 
 			break;
 		case "5":
-			store = storeFrontDAO.readByName("Gunner Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Gunner Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -186,18 +191,18 @@ public class PirateHome {
 
 			break;
 		case "6":
-			store = storeFrontDAO.readByName("Powder Monkey Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Powder Monkey Branch");
 			products = productDAO.readAllByStoreName(store.getName());
 			chooseProduct(store, products);
 
 		case "7":
-			store = storeFrontDAO.readByName("Boatswain Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Boatswain Branch");
 			products = productDAO.readAllByStoreName(store.getName());
 			chooseProduct(store, products);
 
 			break;
 		case "8":
-			store = storeFrontDAO.readByName("Surgeon Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Surgeon Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -205,7 +210,7 @@ public class PirateHome {
 
 			break;
 		case "9":
-			store = storeFrontDAO.readByName("Cook Branch");
+			store = storeFrontDAO.readBySomeColumnValue("Cook Branch");
 
 			products = productDAO.readAllByStoreName(store.getName());
 
@@ -213,7 +218,7 @@ public class PirateHome {
 
 			break;
 		case "o":
-			System.out.println("\n\nLogging out...");
+			print("\n\nLogging out...");
 			return;
 
 		case "x":
@@ -221,7 +226,7 @@ public class PirateHome {
 
 			break;
 		default:
-			System.out.println("\n\nWrong input! Please try again!\n\n");
+			print("\n\nWrong input! Please try again!\n\n");
 			break;
 		}
 
@@ -230,74 +235,84 @@ public class PirateHome {
 	private static void chooseProduct(StoreFront store, ArrayList<Product> products) {
 
 		if (products == null)
-			System.out.println("\n\n" + store.getName() + " has been looted!\n\nThere are no more products in here!");
+			print("\n\n" + store.getName() + " has been looted!\n\nThere are no more products in here!");
 
 		products.print();
 
 		while (true) {
-			System.out.println("\n\nWould you like to purchase an item?");
-			System.out.println("\n\n(1) Yes");
-			System.out.println("(2) No");
-			System.out.println("(x) Exit");
+			print("\n\nWould you like to purchase an item?");
+			print("\n\n(1) Yes");
+			print("(2) No");
+			print("(x) Exit");
 			pirateInput = sc.nextLine();
 			switch (pirateInput) {
 			case "1":
-				System.out.println("Which one?\n\nSelect by number:\n\n");
+				print("Which one?\n\nSelect by number:\n\n");
 				products.print();
 				String choice = sc.nextLine();
 
 				Integer choiceNum = Integer.valueOf(choice);
 				if (products.getElementAtIndex(choiceNum) == null) {
-					System.out.println("\n\nWrong input! Please try again");
+					print("\n\nWrong input! Please try again");
 					logger.log(LogLevel.ERROR, "\n\nWrong input! Please try again");
 					continue;
-				}else {
+				} else {
 					Product myProduct = products.getElementAtIndex(Integer.valueOf(choice));
-					System.out.println("\n\nThis is the item you chose:");
-					
-					System.out.println("\n\n"+myProduct);
-					
-					System.out.println("\n\nHow many would you like?");
-					
+					print("\n\nThis is the item you chose:");
+
+					print("\n\n" + myProduct);
+
+					print("\n\nHow many would you like?");
+
 					String numOfProducts = sc.nextLine();
 					int numOfItemsCustomer = Integer.valueOf(numOfProducts);
-					
+
 					int numOfItemsInStock = 0;
-					for(Product product : products) {
-						if(product.getName().equals(myProduct.getName())) {
+					for (Product product : products) {
+						if (product.getName().equals(myProduct.getName())) {
 							numOfItemsInStock++;
 						}
 					}
-					if(numOfItemsInStock<numOfItemsCustomer) {
-						System.out.println("\n\nI am sorry, but we only have " + numOfItemsInStock + " left.");
-						System.out.println("\n\nLet me go ahead and add it to your order...");
-						
+					if (numOfItemsInStock < numOfItemsCustomer) {
+						print("\n\nI am sorry, but we only have " + numOfItemsInStock + " left.");
+						print("\n\nLet me go ahead and add it to your order...");
+
 						LineItem lineI = new LineItem();
 						lineI.setProduct(myProduct);
 						lineI.setQuantity(numOfItemsCustomer);
-						
-						System.out.println("\n\nThis is your order so far:\n\n"+ order);
-						
+
+						print("\n\nThis is your order so far:\n\n" + order);
+
 					}
-					
-					
+
 					Menu.exit();
 				}
 				break;
 			case "2":
-				
-				System.out.println("\n\nMaybe you would like an item from another store...");
+
+				print("\n\nMaybe you would like an item from another store...");
 				return;
 			case "x":
 				Menu.exit();
 				break;
-				
+
 			default:
-				
-				System.out.println("\n\nWrong input!\n\nPlease try again");
-				break; 
-				
+
+				print("\n\nWrong input!\n\nPlease try again");
+				break;
+
 			}
 		}
+	}
+
+	private static void print(String string) {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("\n" + string);
+
 	}
 }

@@ -36,7 +36,7 @@ public class ProductDAO implements DAO<Product> {
 	}
 
 	@Override
-	public Product readByName(String name) {
+	public Product readBySomeColumnValue(String name) {
 
 		return null;
 	}

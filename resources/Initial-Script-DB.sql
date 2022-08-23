@@ -8,6 +8,8 @@ create table pirates (
 	email varchar(100)
 )
 
+SELECT * FROM store_name;
+SELECT * FROM pirates;
 create table store_front (
 	store_name varchar(100) primary key,
 	address varchar(150)

@@ -6,7 +6,7 @@ import com.revature.pirateRev.models.LineItem;
 public interface DAO<T> {
 	public void create(T obj);
 
-	public T readByName(String name);
+	public T readBySomeColumnValue(String columnVal);
 
 	public void update(T obj);
 

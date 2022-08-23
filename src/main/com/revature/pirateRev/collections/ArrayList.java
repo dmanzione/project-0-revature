@@ -68,6 +68,7 @@ public class ArrayList<T> implements Iterable<T> {
 	}
 
 	public void print() {
+		
 		for (int i = 0; i < backingArray.length; i++) {
 			if (backingArray[i] == null)
 				break;

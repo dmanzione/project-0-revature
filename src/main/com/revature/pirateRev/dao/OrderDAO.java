@@ -39,7 +39,7 @@ public class OrderDAO implements DAO<Order> {
 	}
 
 	@Override
-	public Order readByName(String name) {
+	public Order readBySomeColumnValue(String name) {
 
 		return null;
 	}
@@ -110,8 +110,8 @@ public class OrderDAO implements DAO<Order> {
 		return orders;
 	}
 
-	public ArrayList<Order> readAllByPirateName(String name) {
-		Pirate pirate = pirateDAO.readByName(name);
+	public ArrayList<Order> readAllByPirateUsername(String username) {
+		Pirate pirate = pirateDAO.readBySomeColumnValue(username);
 
 		String query = "SELECT * FROM orders WHERE pirate_id = " + pirate.getId() + ";";
 		ArrayList<Order> orders = new ArrayList<Order>();

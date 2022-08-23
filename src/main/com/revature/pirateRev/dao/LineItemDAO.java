@@ -40,7 +40,7 @@ public class LineItemDAO implements DAO<LineItem> {
 	}
 
 	@Override
-	public LineItem readByName(String name) {
+	public LineItem readBySomeColumnValue(String name) {
 
 		return null;
 	}
