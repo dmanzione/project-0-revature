@@ -8,12 +8,15 @@ public class CaptainsLogger {
 	public static enum LogLevel {
 		INFO, DEBUG, VERBOSE, WARNING, FATAL, ERROR
 	}
+	
+	static CaptainsLogger logger = new CaptainsLogger();
 
 	private CaptainsLogger() {
 	}
 
 	public static CaptainsLogger getLogger() {
-		return new CaptainsLogger();
+	
+		return logger;
 	}
 
 	public void log(LogLevel level, String message) {
