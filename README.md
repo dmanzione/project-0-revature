@@ -23,7 +23,7 @@ Driver
 - The implementation of design patterns such as the Data Access Object 
 (DAO) pattern, Factory Design Pattern (see ConnectionFactory in utils 
 package), Singleton Design Pattern (see CaptainsLogger in utils package)
-- Version control using the git tool and using both local and remote 
+- Version control using the git tool and both local and remote 
 repositories
 - Command-line programming and system navigation
 - and more...
