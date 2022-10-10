@@ -22,7 +22,7 @@ public class CaptainsLogger {
 	}
 
 	private void writeToFile(String message) {
-		try (FileWriter writer = new FileWriter("resources/logs/" + LocalDateTime.now().toLocalDate() + ".log", true)) {
+		try (FileWriter writer = new FileWriter("/Users/user/Desktop/eclipse-workspace/PirateSupply/resources/logs/" + LocalDateTime.now().toLocalDate() + ".log", true)) {
 
 			writer.append(message + "\n");
 		} catch (IOException e) {

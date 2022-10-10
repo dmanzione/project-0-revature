@@ -32,7 +32,7 @@ public class ConnectionFactory {
 		try {
 
 			properties.load(new FileReader(
-					"/Users/donato/Documents/workspace-spring-tool-suite-4-4.15.1.RELEASE/PirateSupply/resources/database.properties"));
+					"/Users/user/Desktop/eclipse-workspace/PirateSupply/resources/database.properties"));
 		} catch (IOException e1) {
 
 			e1.printStackTrace();
