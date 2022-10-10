@@ -25,6 +25,7 @@ Driver
 package), Singleton Design Pattern (see CaptainsLogger in utils package)
 - Version control using the git tool and both local and remote 
 repositories
+- Hosting databases in cloud platforms. We used Amazon Relational Database Service (RDS) in the Amazon Web Services (AWS) cloud platform
 - Command-line programming and system navigation
 - and more...
 
