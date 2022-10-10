@@ -24,7 +24,7 @@ public class ProductDAO implements DAO<Product> {
 					+ product.getProductId() + ", '" + product.getName() + "','" + product.getStore() + "',"
 					+ product.getPrice() + ",'" + product.getCategory() + "')";
 			Statement stmt = conn.createStatement();
-
+			stmt.execute(query);
 			logger.log(LogLevel.INFO, "Product: " + product + " added to database successfully");
 
 		} catch (SQLException e) {
@@ -43,7 +43,7 @@ public class ProductDAO implements DAO<Product> {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			
+
 			while (rs.next()) {
 				product = new Product();
 				product.setProductId(rs.getInt("product_id"));
@@ -51,8 +51,8 @@ public class ProductDAO implements DAO<Product> {
 				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStore(rs.getString("store_id"));
-				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
-				
+//				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
+
 			}
 			return product;
 
@@ -74,7 +74,7 @@ public class ProductDAO implements DAO<Product> {
 			pstmt.setDouble(3, product.getPrice());
 			pstmt.setString(4, product.getCategory());
 			pstmt.setInt(6, product.getProductId());
-			pstmt.setInt(5, product.getQuantityInStock());
+//			pstmt.setInt(5, product.getQuantityInStock());
 			if (!pstmt.execute()) {
 				logger.log(LogLevel.ERROR, "Error updating product " + product + " in database");
 				System.out.println("Product " + product + " could not be updated!");
@@ -119,7 +119,7 @@ public class ProductDAO implements DAO<Product> {
 				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStore(rs.getString("store_id"));
-				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
+//				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
 				products.add(product);
 			}
 
@@ -144,7 +144,8 @@ public class ProductDAO implements DAO<Product> {
 				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStore(rs.getString("store_id"));
-				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
+//				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
+
 			}
 
 		} catch (SQLException e) {
@@ -169,7 +170,7 @@ public class ProductDAO implements DAO<Product> {
 				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getDouble("price"));
 				product.setStore(rs.getString("store_id"));
-				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
+//				product.setQuantityInStock(rs.getInt("quantity_in_stock"));
 				products.add(product);
 			}
 

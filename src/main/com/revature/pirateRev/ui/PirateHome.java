@@ -1,5 +1,6 @@
 package com.revature.pirateRev.ui;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.revature.pirateRev.data.OrderDAO;
@@ -240,7 +241,7 @@ public class PirateHome {
 		products.print();
 
 		while (true) {
-			print("\n\nWould you like to purchase an item?");
+			print("\n\nWould you like to purchase an item from this store?");
 			print("\n\n(1) Yes");
 			print("(2) No");
 			print("(x) Exit");
@@ -248,7 +249,7 @@ public class PirateHome {
 			switch (pirateInput) {
 			case "1":
 				print("Which one?\n\nSelect by number:\n\n");
-				products.print();
+//				products.print();
 				String choice = sc.nextLine();
 
 				Integer choiceNum = Integer.valueOf(choice);
@@ -267,25 +268,39 @@ public class PirateHome {
 					String numOfProducts = sc.nextLine();
 					int numOfItemsCustomer = Integer.valueOf(numOfProducts);
 
-					int numOfItemsInStock = 0;
-					for (Product product : products) {
-						if (product.getName().equals(myProduct.getName())) {
-							numOfItemsInStock++;
+					System.out.println("That would be $" + myProduct.getPrice() * numOfItemsCustomer + "\n\nConfirm purchase by pressing y, or press n if you no longer wish to continue with the purchase");
+					String confirm = sc.nextLine();
+					if(confirm.equalsIgnoreCase("y")) {
+						int numOfItemsInStock = 0;
+						for (Product product : products) {
+							if (product.getName().equals(myProduct.getName())) {
+								numOfItemsInStock++;
+							}
 						}
+						if (numOfItemsInStock < numOfItemsCustomer) {
+							print("\n\nI am sorry, but we only have " + numOfItemsInStock + " left.");
+							
+
+						}else {
+							print("\n\nLet me go ahead and add it to your order...");
+
+							LineItem lineI = new LineItem();
+							lineI.setProduct(myProduct);
+							lineI.setQuantity(numOfItemsCustomer);
+							ArrayList<LineItem > lis = order.getLineItems();
+							lis.add(lineI);
+							order.setLineItems(lis);
+							print("\n\nThis is your order so far:\n\n" + order);
+						}
+						
+						
+					}else {
+						System.out.println("No problem\b");
+						return;
 					}
-					if (numOfItemsInStock < numOfItemsCustomer) {
-						print("\n\nI am sorry, but we only have " + numOfItemsInStock + " left.");
-						print("\n\nLet me go ahead and add it to your order...");
+					
 
-						LineItem lineI = new LineItem();
-						lineI.setProduct(myProduct);
-						lineI.setQuantity(numOfItemsCustomer);
-
-						print("\n\nThis is your order so far:\n\n" + order);
-
-					}
-
-					Menu.exit();
+					
 				}
 				break;
 			case "2":

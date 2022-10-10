@@ -14,6 +14,9 @@ create table store_front (
 	address varchar(150)
 );
 
+
+
+
 create table orders (
 	order_id serial primary key,
 	store_id varchar(100) not null,

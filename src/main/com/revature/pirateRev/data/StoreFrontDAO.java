@@ -51,6 +51,7 @@ public class StoreFrontDAO implements DAO<StoreFront> {
 				store = new StoreFront();
 				store.setAddress(rs.getString("address"));
 				store.setName(rs.getString("store_name"));
+				
 				stores.add(store);
 			}
 		} catch (SQLException e) {
